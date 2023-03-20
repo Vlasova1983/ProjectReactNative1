@@ -1,20 +1,46 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from "react";
+import { NavigationContainer } from '@react-navigation/native';
+import {Provider} from "react-redux";
 
-export default function App() {
+// import {useState} from "react";
+
+// import * as Font from "expo-font";
+// import { AppLoading } from "expo";
+
+import {store} from "./redux/store";
+import { useRoute } from './route';
+import db from "./config";
+// const loadApplication = async () => {
+//   await Font.loadAsync({
+//     "Roboto-Black": require("./assets/fonts/Roboto-Black.ttf"),
+//   });
+// };
+
+
+export default function App () {
+
+  const [user, setUser] = useState(null);
+  const routing = useRoute(user);
+  // const [iasReady, setIasReady] = useState(false);
+
+  // if (!iasReady) {
+  //   return (
+  //     <AppLoading
+  //       startAsync={loadApplication}
+  //       onFinish={() => setIasReady(true)}
+  //       onError={console.warn}
+  //     />
+  //   );
+  // }  
+
+  db.auth().onAuthStateChanged((user) => setUser(user));
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <Provider store={store}>
+      <NavigationContainer>
+        {routing}
+      </NavigationContainer>
+    </Provider>    
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
