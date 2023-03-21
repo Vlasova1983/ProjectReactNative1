@@ -10,7 +10,7 @@ import RegistrationScreen from './Screens/auth/RegistrationScreen';
 import CreatePosteScreen from './Screens/mainScreen/CreatePostsScreen';
 import  PostScreen from './Screens/mainScreen/PostScreen';
 import ProfileScreen from './Screens/mainScreen/ProfileScreen';
-import ComentScreen from './Screens/mainScreen/ComentsScreen';
+// import ComentScreen from './Screens/mainScreen/ComentsScreen';
 
 
 const MainStack = createNativeStackNavigator();
@@ -65,7 +65,7 @@ export const useRoute = (isAuth)=>{
           <MainTab.Screen name="Публикации" component={PostScreen} options={{title: ""}}/>      
           <MainTab.Screen name="Создать публикацию" component={CreatePosteScreen} options={{title: ""}}/>
           <MainTab.Screen name="Профайл" component={ProfileScreen} options={ {title: ""}}/>  
-          <MainTab.Screen  name="ComentScreen" component={ComentScreen}   options={{title: ""}}/>                          
+          {/* <MainTab.Screen  name="ComentScreen" component={ComentScreen}   options={{title: ""}}/>                           */}
         </MainTab.Navigator>   
     );
 }
